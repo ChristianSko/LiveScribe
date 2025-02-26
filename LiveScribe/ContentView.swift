@@ -8,17 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var input: String = ""
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        HSplitView {
+            TextEditor(text: $input)
+            SimpleWebView(
+                content: MarkdownParser(
+                    markdown: input
+                ).text
+            )
         }
-        .padding()
     }
 }
 
 #Preview {
     ContentView()
 }
+
+
+
